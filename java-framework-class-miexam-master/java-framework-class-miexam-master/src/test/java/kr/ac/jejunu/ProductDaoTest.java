@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import static org.junit.Assert.assertEquals;
 
 public class ProductDaoTest {
-    private DaoFactory daoFactory;
     private ProductDao jejuProductDao;
 
     @Before

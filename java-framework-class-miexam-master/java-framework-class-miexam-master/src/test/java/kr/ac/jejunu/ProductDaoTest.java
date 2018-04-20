@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import static org.junit.Assert.assertEquals;
 
 public class ProductDaoTest {
+    private DaoFactory daoFactory;
     private ProductDao jejuProductDao;
-//    private JejuConnectionMaker hallaProductDao;
     @Before
     public void setup() {
-        jejuProductDao = new ProductDao();
-//        hallaProductDao = new JejuConnectionMaker();
+        daoFactory = new DaoFactory();
+        jejuProductDao = daoFactory.getProductDao();
     }
 
     @Test

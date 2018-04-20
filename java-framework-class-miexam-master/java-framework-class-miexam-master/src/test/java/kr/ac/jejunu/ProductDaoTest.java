@@ -33,36 +33,43 @@ public class ProductDaoTest {
     @Test
     public void add() throws SQLException, ClassNotFoundException {
         Product product = new Product();
-        product.setTitle("aaaa");
-        product.setPrice(1234);
-        Long id = jejuProductDao.insert(product);
+        Long id = testInsertUser(product);
 
         Product insertProduct = jejuProductDao.get(id);
         assertEquals(id, insertProduct.getId());
         assertEquals(product.getTitle(), insertProduct.getTitle());
         assertEquals(product.getPrice(), insertProduct.getPrice());
     }
-//    @Test
-//    public void hallaGet() throws SQLException, ClassNotFoundException {
-//        Long id = 1L;
-//        String title = "제주감귤";
-//        Integer price = 15000;
-//
-//        Product product = hallaProductDao.get(id);
-//        assertEquals(id, product.getId());
-//        assertEquals(title, product.getTitle());
-//        assertEquals(price, product.getPrice());
-//    }
-//    @Test
-//    public void hallaAdd() throws SQLException, ClassNotFoundException {
-//        Product product = new Product();
-//        product.setTitle("aaaa");
-//        product.setPrice(1234);
-//        Long id = hallaProductDao.insert(product);
-//
-//        Product insertProduct = hallaProductDao.get(id);
-//        assertEquals(id, insertProduct.getId());
-//        assertEquals(product.getTitle(), insertProduct.getTitle());
-//        assertEquals(product.getPrice(), insertProduct.getPrice());
-//    }
+
+    private Long testInsertUser(Product product) throws ClassNotFoundException, SQLException {
+        product.setTitle("aaaa");
+        product.setPrice(1234);
+        return jejuProductDao.insert(product);
+    }
+
+    @Test
+    public void update() throws SQLException, ClassNotFoundException {
+        Product product = new Product();
+        Long id = testInsertUser(product);
+
+        product.setId(id);
+        product.setTitle("ssss");
+        product.setPrice(1231);
+        jejuProductDao.update(product);
+
+        Product updateProduct = jejuProductDao.get(id);
+        assertEquals(product.getId(), updateProduct.getId());
+        assertEquals(product.getTitle(), updateProduct.getTitle());
+        assertEquals(product.getPrice(), updateProduct.getPrice());
+    }
+    @Test
+    public void delete() throws SQLException, ClassNotFoundException {
+        Product product = new Product();
+        Long id = testInsertUser(product);
+
+        jejuProductDao.delete(id);
+
+        Product deleteProduct = jejuProductDao.get(id);
+        assertEquals(null, deleteProduct);
+    }
 }

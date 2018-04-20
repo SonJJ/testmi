@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class ProductDaoTest {
     private DaoFactory daoFactory;
     private ProductDao jejuProductDao;
+
     @Before
     public void setup() {
         daoFactory = new DaoFactory();

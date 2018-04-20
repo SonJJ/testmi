@@ -24,7 +24,7 @@ public class ProductDaoTest {
         String title = "제주감귤";
         Integer price = 15000;
 
-        Product product = jejuProductDao.get(id);
+        Product product = jejuProductDao.jdbcContext.get(id);
         assertEquals(id, product.getId());
         assertEquals(title, product.getTitle());
         assertEquals(price, product.getPrice());
@@ -34,7 +34,7 @@ public class ProductDaoTest {
         Product product = new Product();
         Long id = testInsertUser(product);
 
-        Product insertProduct = jejuProductDao.get(id);
+        Product insertProduct = jejuProductDao.jdbcContext.get(id);
         assertEquals(id, insertProduct.getId());
         assertEquals(product.getTitle(), insertProduct.getTitle());
         assertEquals(product.getPrice(), insertProduct.getPrice());
@@ -56,7 +56,7 @@ public class ProductDaoTest {
         product.setPrice(1231);
         jejuProductDao.update(product);
 
-        Product updateProduct = jejuProductDao.get(id);
+        Product updateProduct = jejuProductDao.jdbcContext.get(id);
         assertEquals(product.getId(), updateProduct.getId());
         assertEquals(product.getTitle(), updateProduct.getTitle());
         assertEquals(product.getPrice(), updateProduct.getPrice());
@@ -68,7 +68,7 @@ public class ProductDaoTest {
 
         jejuProductDao.delete(id);
 
-        Product deleteProduct = jejuProductDao.get(id);
+        Product deleteProduct = jejuProductDao.jdbcContext.get(id);
         assertEquals(null, deleteProduct);
     }
 }

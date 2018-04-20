@@ -147,9 +147,7 @@ public class JdbcContext {
         return jdbcContextForInset(statementStrategy);
     }
 
-    public Product get(Long id) throws SQLException {
-        String sql = "select * from product where id = ?";
-        Object[] params = new Object[]{id};
+    Product get(String sql, Object[] params) throws SQLException {
         StatementStrategy statementStrategy = connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for(int i=0; i<params.length; i++){

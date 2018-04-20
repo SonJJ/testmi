@@ -12,17 +12,13 @@ public class ProductDao {
 
     public Product get(Long id) throws SQLException {
         StatementStrategy statementStrategy = new GetStatementStrategy(id);
-        Product product = jdbcContext.jdbcContextForGet(statementStrategy);
-
-        return product;
+        return jdbcContext.jdbcContextForGet(statementStrategy);
     }
 
 
     public Long insert(Product product) throws SQLException {
         StatementStrategy statementStrategy = new InsertStatementStrategy(product);
-        Long id = jdbcContext.jdbcContextForInset(statementStrategy);
-
-        return id;
+        return jdbcContext.jdbcContextForInset(statementStrategy);
     }
 
     public void update(Product product) throws SQLException {
